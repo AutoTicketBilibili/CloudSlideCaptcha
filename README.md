@@ -17,25 +17,25 @@ CPP滑动验证码云通过部署
 ## 调用方式
 参考Python
 ```
-def passGeetest(geetest, challenge):
+def passCaptcha():
     session = requests.Session()
-    url = "http://" + BasicInfo.config["GeetestAddress"] + "?gt=" + geetest + "&c=" + challenge
+    url = "http://" + BasicInfo.config["GeetestAddress"] + "?key=2233"
     try:
-        data = session.get(url=url, timeout=10).json()
+        data = session.get(url=url, timeout=(9.05, 15.05)).json()
     except Exception:
-        return passGeetest(geetest, challenge)
+        return passCaptcha()
     return data
 ```
 
 ## 连接测试
 参考Python
 ```
-def checkCloudGeetest(address):
+def checkCloudCaptcha(address):
     session = requests.Session()
-    url = "http://" + address + "?gt=test&c=test"
+    url = "http://" + address + "?key=test"
     try:
         data = session.get(url=url, timeout=(9.05, 15.05)).json()
-        BasicVoid.sendInfo("测试成功！数据：" + str(data))
+        BasicVoid.sendInfo("获取成功！数据：" + str(data))
         return True
     except Exception as e:
         print(e)
