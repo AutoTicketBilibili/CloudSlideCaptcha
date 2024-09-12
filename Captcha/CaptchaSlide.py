@@ -9,7 +9,6 @@ from retry import retry
 def passSlideCaptcha():
     browser = getBrowser()
     result = solve(browser)
-    print(result)
     return result
 
 
